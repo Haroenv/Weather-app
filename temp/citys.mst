@@ -1,0 +1,19 @@
+<article role="article" class="fade-in citys">
+    {{#data}}
+    <section class="citylist" id="{{id}}">
+        <a href="#/city/{{cityNameUrl}}" id="{{id}}" class="content">
+            <small class="icon-{{icon}}"></small>
+            <section>
+                <h2>{{cityName}}</h2>
+                <p>{{description}}</p>
+            </section>
+            <p class="temp">{{temp}} °C</p>
+        </a>
+        <button class="delete {{id}}" id=" {{id}}">
+            <small id="{{id}}">delete</small>
+        </button>
+
+    </section>
+
+    {{/data}}
+</article>

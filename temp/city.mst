@@ -1,0 +1,30 @@
+<article role="article" class="city fade-in">
+    <h2>{{data.cityName}}</h2>
+    <span>{{data.description}}</span>
+
+     <section class="city-info">
+            <ul>
+                <li>
+                    <span class="label">temp now: </span>
+                    <span class="data">{{data.temp}} °C</span>
+                </li>
+                <li>
+                    <span class="label">min temp:</span>
+                    <span class="data">{{data.minTemp}}</span>
+                </li>
+                <li>
+                    <span class="label">Max temp:</span>
+                    <span class="data">{{data.maxTemp}} °C</span>
+                </li>
+                <li>
+                    <span class="label">Wind:</span>
+                    <span class="data">{{data.wind}} m/s</span>
+                </li>
+
+                <li>
+                    <span class="label">Clouds:</span>
+                    <span class="data">{{data.clouds}} %</span>
+                </li>
+            </ul>
+        </section>
+</article>

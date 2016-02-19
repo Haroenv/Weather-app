@@ -1,0 +1,41 @@
+<section role="article" class="home fade-in">
+    <article>
+        <header>
+            <h1>{{data.cityName}}</h1>
+            <p>{{data.description}}</p>
+            <span> {{data.temp}} C°</span>
+        </header>
+
+        <section class="home-info">
+            <ul>
+                <li>
+                    <span class="label">humidity:</span>
+                    <span class="data">{{data.humidity}}</span>
+                </li>
+                <li>
+                    <span class="label">pressure:</span>
+                    <span class="data">{{data.pressure}}</span>
+                </li>
+                <li>
+                    <span class="label">Min temp:</span>
+                    <span class="data">{{data.minTemp}} °C</span>
+                </li>
+                <li>
+                    <span class="label">Max temp:</span>
+                    <span class="data">{{data.maxTemp}} °C</span>
+                </li>
+                <li>
+                    <span class="label">Wind:</span>
+                    <span class="data">{{data.wind}} m/s</span>
+                </li>
+
+                <li>
+                    <span class="label">Clouds:</span>
+                    <span class="data">{{data.clouds}} %</span>
+                </li>
+            </ul>
+
+        </section>
+        <small>This data is from the openweather API.</small>
+    </article>
+</section>

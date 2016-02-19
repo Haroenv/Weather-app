@@ -1,0 +1,78 @@
+.citylist {
+    display: block;
+    background: RGBA(84, 93, 92, 0.6);
+    -webkit-backdrop-filter: blur(1em);
+    backdrop-filter: blur(1em);
+    text-decoration: none;
+    padding: 1rem;
+    position: relative;
+    color: #fff;
+    height: 5em;
+}
+
+.citylist a {
+    position: absolute;
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.citylist:hover {
+    background: RGBA(49, 51, 51, 0.85);
+}
+
+.content {
+    display: inline-block;
+}
+
+.content section {
+    display: inline-block;
+    margin: auto auto auto 0.5em;
+}
+
+.content small {
+    font-size: 5em;
+    height: 100%;
+}
+
+.content .temp {
+    margin: auto 2em auto auto;
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    font-size: 2em;
+}
+
+.citylist button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    width: 0;
+    display: inline-block;
+    overflow: hidden;
+    border: none;
+    color: #fff;
+    font-size: 1.1em;
+    background: red;
+    height: 100%;
+}
+
+.delete small {
+    margin: auto;
+}
+
+.city {
+    padding: 1em;
+}
+
+.city h2,
+.city span {
+    text-align: center;
+}
