@@ -1,4 +1,4 @@
-# Basic structure of single page web app (SPA)
+# A single page weather app
 ![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)
 ![forthebadge](http://forthebadge.com/images/badges/uses-html.svg)
 ![forthebadge](http://forthebadge.com/images/badges/uses-css.svg)
@@ -26,6 +26,30 @@ Install node modules:
 npm install
 ```
 
+## Building
+
+Install Gulp:
+
+```bash
+npm install --global gulp-cli
+```
+
+Go to the project:
+
+```bash
+cd path/to/files
+```
+Install dev npm modules:
+
+```bash
+npm install --dev
+```
+
+Start Gulp:
+
+```bash
+gulp
+```
 
 ## NPM packages
 Name              | Version | Description
