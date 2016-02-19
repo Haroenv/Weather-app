@@ -24,14 +24,13 @@ var dataFunction = (function () {
     };
 })();
 
-//webworker code form http://www.html5rocks.com/en/tutorials/workers/basics/
+//webworker code form http://www.html5rocks.com/en/tutorials/workers/basics
 self.addEventListener('message', function (e) {
     var data = e.data;
     if (data.cmd === 'start') {
         data.templates.forEach(function (current, index) {
             //Get template form pages
             dataFunction.get('http://matth96.github.io/web-app-from-scratch/opdracht-7-modules/temp/' + current + '.mst')
-//            dataFunction.get('../../temp/' + current + '.mst')
                 .then(response => {
                 var dataRespose = JSON.stringify(response);
 
@@ -41,7 +40,6 @@ self.addEventListener('message', function (e) {
                     name: current,
                     template: response,
                 };
-
                 return object;
             }).then(response => {
                 //Send the templates to te weatherapp script

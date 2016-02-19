@@ -4,16 +4,15 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
-    minifyCss = require('gulp-minify-css'),
-    livereload = require('gulp-livereload');
+    cssnano = require('gulp-cssnano'),
+    livereload = require('gulp-livereload'),
+    browserSync = require('browser-sync');
 
 // Styles
 gulp.task('styles', function (cb) {
     gulp.src(['./src/css/reset.css', './src/css/font.css', './src/css/loading.css', './src/css/main.css', './src/css/nav.css', './src/css/citys.css', './src/css/search.css'])
         .pipe(concat('main.css'))
-        .pipe(minifyCss({
-            compatibility: 'ie8'
-        }))
+        .pipe(cssnano())
         .pipe(gulp.dest('dist/css/'))
 });
 
@@ -45,14 +44,18 @@ gulp.task('default', function () {
     gulp.start('styles', 'scripts', 'worker');
 });
 
-// Watch
 gulp.task('watch', function () {
-    // Watch .scss files
+    browserSync.init({
+        server: {
+            baseDir: "./"
+        }
+    });
+
     gulp.watch('./src/css/*.css', ['styles']);
     // Watch .js files
     gulp.watch('./src/js/*.js', ['scripts']);
     // Create LiveReload server
-    livereload.listen();
-    // Watch any files in dist/, reload on change
-    gulp.watch(['dist/**']).on('change', livereload.changed);
+    gulp.watch({
+        glob: 'dist/**'
+    }, [browserSync.reload]);
 });
