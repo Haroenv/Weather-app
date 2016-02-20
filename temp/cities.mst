@@ -1,4 +1,4 @@
-<article role="article" class="fade-in citys">
+<article role="article" class="fade-in cities">
     {{#data}}
     <section class="citylist" id="{{id}}">
         <a href="#/city/{{cityNameUrl}}" id="{{id}}" class="content">

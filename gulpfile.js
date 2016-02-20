@@ -10,7 +10,7 @@ var gulp = require('gulp'),
 
 // Styles
 gulp.task('styles', function (cb) {
-    gulp.src(['./src/css/reset.css', './src/css/font.css', './src/css/loading.css', './src/css/main.css', './src/css/nav.css', './src/css/citys.css', './src/css/search.css'])
+    gulp.src(['./src/css/reset.css', './src/css/font.css', './src/css/loading.css', './src/css/main.css', './src/css/nav.css', './src/css/cities.css', './src/css/search.css'])
         .pipe(concat('main.css'))
         .pipe(cssnano())
         .pipe(gulp.dest('dist/css/'))

@@ -4,7 +4,7 @@ weatherApp.routes = (function () {
     var _routes = {
         '/home': weatherApp.page.home,
         '/search': weatherApp.page.search,
-        '/citys': weatherApp.page.citys,
+        '/cities': weatherApp.page.cities,
         '/city/:city': weatherApp.page.city
     };
 

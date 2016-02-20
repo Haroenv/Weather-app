@@ -4,7 +4,7 @@ weatherApp.page = (function () {
     var _homeTemplate = weatherApp.localStorage.get('home'),
         _searchresultsTemplate = weatherApp.localStorage.get('searchresults'),
         _searchTemplate = weatherApp.localStorage.get('search'),
-        _citysTemplate = weatherApp.localStorage.get('citys'),
+        _citiesTemplate = weatherApp.localStorage.get('cities'),
         _cityTemplate = weatherApp.localStorage.get('city');
 
     function home() { //render the home template
@@ -86,9 +86,9 @@ weatherApp.page = (function () {
                         weatherApp.get.one('.searchlist').addEventListener('click', function (e) {
                             if (e.target && e.target.nodeName == 'LI') {
                                 //add the clicked city to local storage.
-                                weatherApp.localStorage.add('savedCitys', e.target.id);
-                                // go to #/citys
-                                window.location = '#/citys';
+                                weatherApp.localStorage.add('savedCities', e.target.id);
+                                // go to #/cities
+                                window.location = '#/cities';
                             }
                         });
                     }).catch(e => {
@@ -102,25 +102,25 @@ weatherApp.page = (function () {
         searchFuntion();
     };
 
-    function citys() {
+    function cities() {
         // a emty array with the
-        var savedCitysData = [],
-            savedCitys = weatherApp.localStorage.get('savedCitys');
+        var savedCitiesData = [],
+            savedCities = weatherApp.localStorage.get('savedCities');
 
-        if (savedCitys.length <= 0) {
+        if (savedCities.length <= 0) {
             window.location = '#/search';
             weatherApp.ux.showErr('Sorry, there\' nothing here, please add a city.');
         } else {
             //loop threu the saved city's
-            savedCitys.forEach(function (element) {
+            savedCities.forEach(function (element) {
                 var url = weatherApp.data.WeatherUrl(element),
-                    deleteCity = function (savedCitysData) {
+                    deleteCity = function (savedCitiesData) {
                         //divine a event lisner on the showed list
-                        var citys = weatherApp.get.one('.citys');
-                        citys.addEventListener('click', function (e) {
+                        var cities = weatherApp.get.one('.cities');
+                        cities.addEventListener('click', function (e) {
                             if (e.target && e.target.nodeName == 'BUTTON' || e.target && e.target.nodeName == 'SMALL') {
                                 var delCity = e.target.id.toLowerCase();
-                                weatherApp.localStorage.remove(savedCitysData, delCity)
+                                weatherApp.localStorage.remove(savedCitiesData, delCity)
                             }
                         });
                     };
@@ -130,7 +130,7 @@ weatherApp.page = (function () {
 
                         return data
                     }).then(response => {
-                        savedCitysData.push({
+                        savedCitiesData.push({
                             cityName: response.name,
                             cityNameUrl: response.name+ '-' + response.sys.country.toLowerCase(),
                             icon: response.weather[0].icon,
@@ -138,10 +138,10 @@ weatherApp.page = (function () {
                             temp: response.main.temp,
                             id: response.name.replace(/ /g, '-').toLowerCase() + '-' + response.sys.country.toLowerCase()
                         });
-                        if (savedCitysData.length === savedCitys.length) {
-                            weatherApp.render.template('#target', _citysTemplate, savedCitysData);
+                        if (savedCitiesData.length === savedCities.length) {
+                            weatherApp.render.template('#target', _citiesTemplate, savedCitiesData);
                             weatherApp.ux.init();
-                            deleteCity(savedCitysData);
+                            deleteCity(savedCitiesData);
                         }
                     }).catch(e => {
                         console.error(e);
@@ -179,7 +179,7 @@ weatherApp.page = (function () {
     return {
         home: home,
         search: search,
-        citys: citys,
+        cities: cities,
         city: city
     };
 

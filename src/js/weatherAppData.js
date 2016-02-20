@@ -31,11 +31,11 @@ weatherApp.data = (function () {
 })();
 
 weatherApp.localStorage = (function () {
-    var templates = ['home', 'citys', 'city', 'search', 'searchresults'];
-    var _getSavedCitys = get('savedCitys');
+    var templates = ['home', 'cities', 'city', 'search', 'searchresults'];
+    var _getSavedCities = get('savedCities');
 
     function init() {
-        //check if savedCitys exists if not create a [];
+        //check if savedCities exists if not create a [];
         templates.forEach(function (currentValue, index) {
             var getCurrent = localStorage.getItem(currentValue);
             // if the value is Undefined  set a [] in the local storage
@@ -43,38 +43,38 @@ weatherApp.localStorage = (function () {
                 localStorage.setItem(currentValue, '[]');
             }
         });
-        if (_getSavedCitys === null || _getSavedCitys === undefined) {
-            localStorage.setItem('savedCitys', '[]');
+        if (_getSavedCities === null || _getSavedCities === undefined) {
+            localStorage.setItem('savedCities', '[]');
         }
     };
 
-    function get(key) { //get the data from the savedCitys array
-        var savedCitys = localStorage.getItem(key);
-        return JSON.parse(savedCitys);
+    function get(key) { //get the data from the savedCities array
+        var savedCities = localStorage.getItem(key);
+        return JSON.parse(savedCities);
     };
 
     function add(key, data) {
-        var savedCitys = get(key),
-            contains = _.contains(savedCitys, data);
+        var savedCities = get(key),
+            contains = _.contains(savedCities, data);
 
         if (contains === false) { //ceck if the city is already in the array if not add the city to the array
-            savedCitys.push(data);
-            var stringifiedData = JSON.stringify(savedCitys);
+            savedCities.push(data);
+            var stringifiedData = JSON.stringify(savedCities);
 
-            localStorage.setItem('savedCitys', stringifiedData);
+            localStorage.setItem('savedCities', stringifiedData);
         } else {
             weatherApp.ux.showErr('You already add this one.');
         }
     };
 
-    var _citysTemplate = get('citys');
+    var _citiesTemplate = get('cities');
 
-    function _setSavedCitys(newData, savedCitysData, delCity) {
+    function _setSavedCities(newData, savedCitiesData, delCity) {
             //set the saved city array
-        localStorage.setItem('savedCitys', newData);
+        localStorage.setItem('savedCities', newData);
 
         //delete the deleteded array
-        var rawData = _.filter(savedCitysData, function (newdata) {
+        var rawData = _.filter(savedCitiesData, function (newdata) {
             return newdata.id.toLowerCase() != delCity;
         });
         console.log(rawData)
@@ -82,25 +82,25 @@ weatherApp.localStorage = (function () {
             //refresh the page
             document.location.reload(true);
         } else {
-            weatherApp.render.template('#target', _citysTemplate, rawData);
+            weatherApp.render.template('#target', _citiesTemplate, rawData);
         }
     }
 
-    function remove(savedCitysData, delCity) {
-        var getSavedCitys = get('savedCitys'),
-            index = getSavedCitys.indexOf(delCity);
+    function remove(savedCitiesData, delCity) {
+        var getSavedCities = get('savedCities'),
+            index = getSavedCities.indexOf(delCity);
 
-        //if the array is 1 run _setSavedCitys
-        if (getSavedCitys.length === 1) {
-            _setSavedCitys('[]', savedCitysData, delCity)
+        //if the array is 1 run _setSavedCities
+        if (getSavedCities.length === 1) {
+            _setSavedCities('[]', savedCitiesData, delCity)
         } else {
             //if more than 1 check if the index is not -1
             if (index !== -1) {
                 //splice the data on the index
-                getSavedCitys.splice(index, 1);
-                var newCityArray = JSON.stringify(getSavedCitys);
-                //run _setSavedCitys with the data
-                _setSavedCitys(newCityArray, savedCitysData, delCity);
+                getSavedCities.splice(index, 1);
+                var newCityArray = JSON.stringify(getSavedCities);
+                //run _setSavedCities with the data
+                _setSavedCities(newCityArray, savedCitiesData, delCity);
 
             } else {
                 //show a err
@@ -126,8 +126,8 @@ weatherApp.webWorker = (function () { //define web worker
 
         //lissen to the responses of the webworker.
         templateWorker.addEventListener('message', function (e) {
-            if (e.data.name === 'savedCitys' || e.data.name === undefined) {
-                console.log('Not in savedCitys');
+            if (e.data.name === 'savedCities' || e.data.name === undefined) {
+                console.log('Not in savedCities');
             } else {
                 //set the template in the local storatge
                 localStorage.setItem(e.data.name, e.data.template);

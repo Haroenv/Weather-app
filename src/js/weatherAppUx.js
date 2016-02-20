@@ -2,9 +2,9 @@ weatherApp.ux = (function () {
     var _errorLocation = weatherApp.get.one('.error');
 
     function init() {
-        var citys = weatherApp.get.one('.citys'),
+        var cities = weatherApp.get.one('.cities'),
             body = weatherApp.get.one('body'),
-            hammer = new Hammer(citys),
+            hammer = new Hammer(cities),
             historyHammer = new Hammer(body);
 
         _swipeLeft(hammer);
